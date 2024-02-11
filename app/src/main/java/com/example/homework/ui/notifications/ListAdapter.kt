@@ -22,6 +22,11 @@ class ListAdapter(
         return ListViewHolder(binding)
     }
 
+    fun addTasks(list: List<ListTasks>){
+        tasks.clear()
+        tasks.addAll(list)
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return tasks.size
     }
@@ -34,7 +39,12 @@ class ListAdapter(
         }
     }
 
-    private fun navigateToTaskEditFragment(view: View, taskDescription: String, position: Int, addTask: Boolean) {
+    private fun navigateToTaskEditFragment(
+        view: View,
+        taskDescription: String,
+        position: Int,
+        addTask: Boolean
+    ) {
         val action = HomeFragmentDirections.actionNavigationHomeToTaskEditFragment(
             argtext = taskDescription,
             position = position,

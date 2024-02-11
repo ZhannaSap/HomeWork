@@ -1,54 +1,49 @@
-package com.example.homework.ui.home.All
+package com.example.homework.ui.home.all
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.homework.databinding.FragmentCategoryBBinding
+import com.example.homework.databinding.FragmentAllTasksBinding
 import com.example.homework.ui.home.HomeFragmentDirections
 import com.example.homework.ui.notifications.ListAdapter
 import com.example.homework.ui.notifications.ListTasks
 
-class CategoryBFragment : Fragment() {
 
-    private var _binding: FragmentCategoryBBinding? = null
+class AllTasksFragment(val listTasks: ArrayList<ListTasks>) : Fragment() {
+
+    private var _binding: FragmentAllTasksBinding? = null
     private val binding get() = _binding!!
 
-    private val tasksB = ArrayList<ListTasks>()
+  //  private val tasks = ArrayList<ListTasks>()
+  val adapter = ListAdapter(listTasks) { position ->
+      navigateToTaskEditFragment("", position, false)
+  }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCategoryBBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = FragmentAllTasksBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ListAdapter(tasksB) { position ->
-            navigateToTaskEditFragment("", position, false)
-        }
+
 
         binding.taskList.adapter = adapter
         binding.taskList.layoutManager = LinearLayoutManager(requireContext())
 
         binding.addButton.setOnClickListener {
-            navigateToTaskEditFragment("", tasksB.size, true)
+            navigateToTaskEditFragment("", listTasks.size, true)
         }
-
-        tasksB.add(ListTasks("сходить в магазин", position = tasksB.size))
-        tasksB.add(ListTasks("покармить кота", position = tasksB.size))
-        tasksB.add(ListTasks("ничего", position = tasksB.size))
-        tasksB.add(ListTasks("убраться в комнате", position = tasksB.size))
-
-
-        adapter.notifyDataSetChanged()
+        adapter.addTasks(listTasks)
+            //adapter.notifyDataSetChanged()
     }
 
     private fun navigateToTaskEditFragment(taskDescription: String, position: Int, addTask: Boolean) {

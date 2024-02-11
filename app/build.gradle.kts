@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -60,8 +61,29 @@ android {
         implementation("androidx.viewpager2:viewpager2:1.0.0")
         implementation ("com.github.bumptech.glide:glide:4.12.0")
         annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-        implementation( "androidx.fragment:fragment:1.3.0")
+        implementation( "androidx.fragment:fragment-ktx:1.6.2")
 
+        /*Room library, SQL?*/
+        val room_version = "2.6.0"
+
+        implementation ("androidx.room:room-runtime:$room_version")
+        annotationProcessor ("androidx.room:room-compiler:$room_version")
+
+        // To use Kotlin annotation processing tool (kapt)
+        kapt ("androidx.room:room-compiler:$room_version")
+
+
+
+
+        implementation("androidx.viewpager2:viewpager2:1.0.0")
+        implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+        // Add the dependency for the Firebase Authentication library
+        implementation("com.google.firebase:firebase-auth")
 
     }
+}
+dependencies {
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.4.1")
 }

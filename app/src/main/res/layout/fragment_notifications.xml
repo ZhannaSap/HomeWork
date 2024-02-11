@@ -8,27 +8,28 @@
         android:id="@+id/avatarImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_foreground"
-    android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher_foreground" />
 
     <Button
         android:id="@+id/chooseAvatarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Выбрать аватарку"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="Выбрать аватарку" />
 
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите имя пользователя"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:hint="Введите имя пользователя" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Сохранить"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="Сохранить" />
+
 </LinearLayout>

@@ -1,6 +1,4 @@
-package com.example.homework.ui.home.All
-
-import com.example.homework.R
+package com.example.homework.ui.home.all
 
 
 // CategoryAFragment.kt
@@ -16,12 +14,12 @@ import com.example.homework.ui.home.HomeFragmentDirections
 import com.example.homework.ui.notifications.ListAdapter
 import com.example.homework.ui.notifications.ListTasks
 
-class CategoryAFragment : Fragment() {
+class CategoryAFragment(private val tasksA:ArrayList<ListTasks>) : Fragment() {
 
     private var _binding: FragmentCategoryABinding? = null
     private val binding get() = _binding!!
 
-    private val tasksA = ArrayList<ListTasks>()
+   // private val tasksA = ArrayList<ListTasks>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,12 +43,14 @@ class CategoryAFragment : Fragment() {
         binding.addButton.setOnClickListener {
             navigateToTaskEditFragment("", tasksA.size, true)
         }
+/*
 
         tasksA.add(ListTasks("Написать курсавую", position = tasksA.size))
         tasksA.add(ListTasks("сходить в колледж", position = tasksA.size))
         tasksA.add(ListTasks("уволиться", position = tasksA.size))
         tasksA.add(ListTasks("купить крысу", position = tasksA.size))
         tasksA.add(ListTasks("убраться в комнате", position = tasksA.size))
+*/
 
         adapter.notifyDataSetChanged()
     }

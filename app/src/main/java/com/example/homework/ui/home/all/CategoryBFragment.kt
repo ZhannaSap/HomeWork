@@ -1,38 +1,37 @@
-package com.example.homework.ui.home.All
+package com.example.homework.ui.home.all
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.homework.R
-import com.example.homework.databinding.FragmentAllTasksBinding
+import com.example.homework.databinding.FragmentCategoryBBinding
 import com.example.homework.ui.home.HomeFragmentDirections
 import com.example.homework.ui.notifications.ListAdapter
 import com.example.homework.ui.notifications.ListTasks
 
+class CategoryBFragment(private val tasksB : ArrayList<ListTasks>) : Fragment() {
 
-class AllTasksFragment : Fragment() {
-
-    private var _binding: FragmentAllTasksBinding? = null
+    private var _binding: FragmentCategoryBBinding? = null
     private val binding get() = _binding!!
 
-    private val tasks = ArrayList<ListTasks>()
+  //  private val tasksB = ArrayList<ListTasks>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAllTasksBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentCategoryBBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ListAdapter(tasks) { position ->
+        val adapter = ListAdapter(tasksB) { position ->
             navigateToTaskEditFragment("", position, false)
         }
 
@@ -40,18 +39,16 @@ class AllTasksFragment : Fragment() {
         binding.taskList.layoutManager = LinearLayoutManager(requireContext())
 
         binding.addButton.setOnClickListener {
-            navigateToTaskEditFragment("", tasks.size, true)
+            navigateToTaskEditFragment("", tasksB.size, true)
         }
+/*
 
-        tasks.add(ListTasks("Написать курсавую", position = tasks.size))
-        tasks.add(ListTasks("сходить в колледж", position = tasks.size))
-        tasks.add(ListTasks("уволиться", position = tasks.size))
-        tasks.add(ListTasks("купить крысу", position = tasks.size))
-        tasks.add(ListTasks("убраться в комнате", position = tasks.size))
-        tasks.add(ListTasks("сходить в магазин", position = tasks.size))
-        tasks.add(ListTasks("покармить кота", position = tasks.size))
-        tasks.add(ListTasks("ничего", position = tasks.size))
-        tasks.add(ListTasks("убраться в комнате", position = tasks.size))
+        tasksB.add(ListTasks("сходить в магазин", position = tasksB.size))
+        tasksB.add(ListTasks("покармить кота", position = tasksB.size))
+        tasksB.add(ListTasks("ничего", position = tasksB.size))
+        tasksB.add(ListTasks("убраться в комнате", position = tasksB.size))
+
+*/
 
         adapter.notifyDataSetChanged()
     }

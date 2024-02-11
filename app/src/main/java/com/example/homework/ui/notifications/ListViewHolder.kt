@@ -8,7 +8,6 @@ class ListViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHo
     fun onBind(task: ListTasks) {
         with(binding) {
             itemListTask.text = task.name
-
         }
     }
 }
